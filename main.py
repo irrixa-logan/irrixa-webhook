@@ -33,3 +33,9 @@ async def receive_webhook(request: Request):
     except Exception as e:
         print(f"❌ Error processing webhook: {e}")
         return {"status": "error", "detail": str(e)}
+
+# ✅ Add this to handle GET requests (Render health check or browser hit)
+@app.get("/webhook")
+def webhook_health_check():
+    print("🧠 GET /webhook ping received.")
+    return {"status": "alive", "message": "Irrixa webhook endpoint is online."}
